@@ -1,0 +1,30 @@
+{
+  "name": "next-version",
+  "version": "0.1.0",
+  "description": "Increments a project to the next version.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "-o dist --source-map --license licenses.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Piszmog/next-version.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Piszmog/next-version/issues"
+  },
+  "homepage": "https://github.com/Piszmog/next-version#readme",
+  "dependencies": {
+    "@actions/core": "^1.6.0",
+    "@actions/github": "^5.0.0",
+    "fs": "^0.0.1-security"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.33.1",
+    "jest": "^27.4.7"
+  }
+}
