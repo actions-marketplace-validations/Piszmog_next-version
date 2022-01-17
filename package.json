@@ -4,6 +4,7 @@
   "description": "Increments a project to the next version.",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": "jest",
     "build": "-o dist --source-map --license licenses.txt"
   },
