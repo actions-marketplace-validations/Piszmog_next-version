@@ -2,11 +2,12 @@
   "name": "next-version",
   "version": "1.0.0",
   "description": "Increments a project to the next version.",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "build": "-o dist --source-map --license licenses.txt"
+    "build": "ncc build",
+    "buildv17": "node --openssl-legacy-provider ./node_modules/@vercel/ncc/dist/ncc/cli.js build"
   },
   "repository": {
     "type": "git",
