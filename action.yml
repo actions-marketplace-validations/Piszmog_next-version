@@ -1,0 +1,15 @@
+name: Next Version
+description: Increment a Project to the next version
+inputs:
+  GITHUB_TOKEN:
+    description: Personal access token for the GitHub account that will be used to make the API calls.
+    required: true
+  files:
+    description: The files that contain the version number to increment.
+    required: true
+outputs:
+  version:
+    description: The new version
+runs:
+  using: node16
+  main: dist/index.js
