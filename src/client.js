@@ -1,6 +1,5 @@
 const util = require("./util");
 
-
 /**
  * Wrapper around the GitHub API.
  */
