@@ -4,6 +4,11 @@ const util = require("./util");
  * Wrapper around the GitHub API.
  */
 class Client {
+    /**
+     * Creates a new Client instance.
+     * @param octokit The Octokit instance to use.
+     * @param context The GitHub context to use.
+     */
     constructor(octokit, context) {
         this.octokit = octokit;
         this.owner = context.repo.owner;

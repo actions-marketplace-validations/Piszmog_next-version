@@ -9,6 +9,12 @@ const gradleRegex = 'version=([0-9.]+)';
  * Handler for the files to be updated.
  */
 class Handler {
+    /**
+     * Creates a new instance of the handler.
+     * @param client The client to use for the update.
+     * @param mainBranch The main branch to use for the update.
+     * @param versionToIncrement The version to increment.
+     */
     constructor(client, mainBranch, versionToIncrement) {
         this.client = client;
         this.mainBranch = mainBranch;
