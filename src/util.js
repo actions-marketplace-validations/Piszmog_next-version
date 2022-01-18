@@ -74,17 +74,6 @@ const decode = (s) => {
     return Buffer.from(s, 'base64').toString('utf-8');
 }
 
-
-/**
- * Thrown when the version is not found.
- */
-class VersionNotFoundError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'VersionNotFoundError';
-    }
-}
-
 /**
  * Thrown when the version in not in the semantic versioning format.
  */
@@ -95,23 +84,11 @@ class InvalidVersionError extends Error {
     }
 }
 
-/**
- * Thrown when the version has already been incremented.
- */
-class VersionAlreadyIncrementedError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'VersionAlreadyIncrementedError';
-    }
-}
-
 module.exports = {
     getVersionToIncrement,
     getNextVersion,
     getFileExtension,
     encode,
     decode,
-    VersionNotFoundError,
     InvalidVersionError,
-    VersionAlreadyIncrementedError,
 };

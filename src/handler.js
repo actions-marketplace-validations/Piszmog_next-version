@@ -45,10 +45,10 @@ class Handler {
                     core.warning(`Unsupported file: ${path}`);
             }
         } catch (err) {
-            if (err instanceof util.InvalidVersionError || err instanceof util.VersionNotFoundError) {
+            if (err instanceof util.InvalidVersionError || err instanceof VersionNotFoundError) {
                 core.setFailed(err.message);
                 return;
-            } else if (err instanceof util.VersionAlreadyIncrementedError) {
+            } else if (err instanceof VersionAlreadyIncrementedError) {
                 core.info(err.message);
                 return;
             } else if (err instanceof MainFileDoesNotExistError) {
@@ -78,7 +78,7 @@ class Handler {
         const mainVersion = JSON.parse(mainContent).version;
         // if they are different, then bail out
         if (mainVersion !== currentVersion) {
-            throw new util.VersionAlreadyIncrementedError(`Version in ${path} has already been incremented.`);
+            throw new VersionAlreadyIncrementedError(`Version in ${path} has already been incremented.`);
         }
         // else increment the version
         const nextVersion = util.getNextVersion(currentVersion, this.versionToIncrement);
@@ -97,19 +97,19 @@ class Handler {
         // TODO get the version in a more robust way
         const matches = content.match(pomRegex);
         if (matches.length !== 2) {
-            throw new util.VersionNotFoundError(`Unable to find version in POM for file ${path}`);
+            throw new VersionNotFoundError(`Unable to find version in POM for file ${path}`);
         }
         const currentVersion = matches[1];
         // determine if the version has already been incremented
         const mainContent = await this.getMainContent(path);
         const mainMatches = mainContent.match(pomRegex);
         if (mainMatches.length !== 2) {
-            throw new util.VersionNotFoundError(`Unable to find version in POM on main branch for file ${path}`);
+            throw new VersionNotFoundError(`Unable to find version in POM on main branch for file ${path}`);
         }
         const mainVersion = mainMatches[1];
         // if they are different, then bail out
         if (mainVersion !== currentVersion) {
-            throw new util.VersionAlreadyIncrementedError(`Version in ${path} has already been incremented.`);
+            throw new VersionAlreadyIncrementedError(`Version in ${path} has already been incremented.`);
         }
         const nextVersion = util.getNextVersion(currentVersion, this.versionToIncrement);
         core.info(`Incrementing POM version from ${currentVersion} to ${nextVersion}`);
@@ -126,19 +126,19 @@ class Handler {
         // TODO get the version in a more robust way
         const matches = content.match(gradleRegex);
         if (matches.length !== 2) {
-            throw new util.VersionNotFoundError(`Unable to find version in Gradle for file ${path}`);
+            throw new VersionNotFoundError(`Unable to find version in Gradle for file ${path}`);
         }
         const currentVersion = matches[1];
         // determine if the version has already been incremented
         const mainContent = await this.getMainContent(path);
         const mainMatches = mainContent.match(pomRegex);
         if (mainMatches.length !== 2) {
-            throw new util.VersionNotFoundError(`Unable to find version in Gradle on main branch for file ${path}`);
+            throw new VersionNotFoundError(`Unable to find version in Gradle on main branch for file ${path}`);
         }
         const mainVersion = mainMatches[1];
         // if they are different, then bail out
         if (mainVersion !== currentVersion) {
-            throw new util.VersionAlreadyIncrementedError(`Version in ${path} has already been incremented.`);
+            throw new VersionAlreadyIncrementedError(`Version in ${path} has already been incremented.`);
         }
         const nextVersion = util.getNextVersion(currentVersion, this.versionToIncrement);
         core.info(`Incrementing Gradle version from ${currentVersion} to ${nextVersion}`);
@@ -161,6 +161,26 @@ class Handler {
             throw e;
         }
         return util.decode(mainContent.content);
+    }
+}
+
+/**
+ * Thrown when the version has already been incremented.
+ */
+class VersionAlreadyIncrementedError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'VersionAlreadyIncrementedError';
+    }
+}
+
+/**
+ * Thrown when the version is not found.
+ */
+class VersionNotFoundError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'VersionNotFoundError';
     }
 }
 
