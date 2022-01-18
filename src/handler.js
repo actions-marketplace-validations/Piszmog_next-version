@@ -51,6 +51,9 @@ class Handler {
             } else if (err instanceof util.VersionAlreadyIncrementedError) {
                 core.info(err.message);
                 return;
+            } else if (err instanceof MainFileDoesNotExistError) {
+                core.warning(err.message);
+                return;
             } else {
                 throw err;
             }
@@ -148,8 +151,26 @@ class Handler {
      * @returns {Promise<string>} The content of the file.
      */
     async getMainContent(path) {
-        const mainContent = await this.client.getContent(path, this.mainBranch);
+        let mainContent;
+        try {
+            mainContent = await this.client.getContent(path, this.mainBranch);
+        } catch (e) {
+            if (e.status === 404) {
+                throw new MainFileDoesNotExistError(`Main branch file ${path} does not exist.`);
+            }
+            throw e;
+        }
         return util.decode(mainContent.content);
+    }
+}
+
+/**
+ * Error when the main file does not exist.
+ */
+class MainFileDoesNotExistError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'MainFileDoesNotExistError';
     }
 }
 
