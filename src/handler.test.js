@@ -1,5 +1,5 @@
-const core = require('@actions/core');
-const fs = require('fs');
+// const core = require('@actions/core');
+// const fs = require('fs');
 const Client = require('./client');
 const Handler = require('./handler');
 const util = require('./util');
