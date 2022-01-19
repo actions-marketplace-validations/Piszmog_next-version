@@ -7,9 +7,6 @@ inputs:
   files:
     description: The files that contain the version number to increment.
     required: true
-outputs:
-  version:
-    description: The new version
 runs:
   using: node16
   main: dist/index.js
