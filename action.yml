@@ -1,5 +1,8 @@
-name: Next Version
-description: Increment a Project to the next version
+name: Increment Project Version
+description: Increments a Project's semantic version to the next version at Pull Request time
+branding:
+  icon: chevrons-up
+  color: blue
 inputs:
   GITHUB_TOKEN:
     description: Personal access token for the GitHub account that will be used to make the API calls.
