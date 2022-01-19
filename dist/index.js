@@ -8696,11 +8696,15 @@ const isVersionBumpedCorrectly = (mainVersion, branchVersion, versionToIncrement
     const branchVersionParts = branchVersion.split('.');
     const mainMajor = parseInt(mainVersionParts[0]);
     const mainMinor = parseInt(mainVersionParts[1]);
+    const mainPatch = parseInt(mainVersionParts[2]);
     const branchMajor = parseInt(branchVersionParts[0]);
     const branchMinor = parseInt(branchVersionParts[1]);
+    const branchPatch = parseInt(branchVersionParts[2]);
     if (versionToIncrement === 'major' && branchMajor - mainMajor !== 1) {
         return false;
     } else if (versionToIncrement === 'minor' && branchMinor - mainMinor !== 1) {
+        return false;
+    } else if (versionToIncrement === 'patch' && branchPatch - mainPatch !== 1) {
         return false;
     }
     return true;
