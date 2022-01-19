@@ -41,15 +41,15 @@ describe('get next version', () => {
             .toThrowError('Version does not follow semantic versioning of major.minor.patch');
     });
 
-    it('should increment main version when main is ahead as major', () => {
+    it('should increment version when main is ahead as major', () => {
         expect(util.getNextVersion('1.0.0', '0.0.0', 'major')).toBe('2.0.0');
     });
 
-    it('should increment main version when main is ahead as minor', () => {
+    it('should increment version when main is ahead as minor', () => {
         expect(util.getNextVersion('0.1.0', '0.0.0', 'minor')).toBe('0.2.0');
     });
 
-    it('should increment main version when main is ahead as patch', () => {
+    it('should increment version when main is ahead as patch', () => {
         expect(util.getNextVersion('0.0.1', '0.0.0', 'patch')).toBe('0.0.2');
     });
 
@@ -64,6 +64,10 @@ describe('get next version', () => {
 
     it('should increment minor after patch has been incremented', () => {
         expect(util.getNextVersion('0.0.0', '0.0.1', 'minor')).toBe('0.1.0');
+    });
+
+    it('should increment patch after patch has been incremented with major', () => {
+        expect(util.getNextVersion('0.0.0', '1.0.0', 'patch')).toBe('0.0.1');
     });
 });
 
