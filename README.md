@@ -5,6 +5,14 @@
 Increment the **semantic** version of the project to the next version. Used to increment the version at Pull Request
 time.
 
+## Supported Files
+
+Current support the following files,
+
+* `package.json`
+* `pom.xml`
+* `build.gradle`
+
 ## How does it work?
 
 The Action is driven based on the labels on the Pull Request. The following labels are supported:
