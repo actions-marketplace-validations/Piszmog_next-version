@@ -20,39 +20,50 @@ describe('determine version to increment', () => {
 
 describe('get next version', () => {
     it('should increment major', () => {
-        expect(util.getNextVersion('1.2.3', 'major')).toBe('2.0.0');
+        expect(util.getNextVersion('0.0.0', '0.0.0', 'major')).toBe('1.0.0');
     });
 
     it('should increment minor', () => {
-        expect(util.getNextVersion('1.2.3', 'minor')).toBe('1.3.0');
+        expect(util.getNextVersion('0.0.0', '0.0.0', 'minor')).toBe('0.1.0');
     });
 
     it('should increment patch', () => {
-        expect(util.getNextVersion('1.2.3', 'patch')).toBe('1.2.4');
+        expect(util.getNextVersion('0.0.0', '0.0.0', 'patch')).toBe('0.0.1');
     });
 
-    it('should throw error', () => {
-        expect(() => {
-            util.getNextVersion('1.2', 'patch');
-        }).toThrowError('Version does not follow semantic versioning of major.minor.patch: 1.2');
-    });
-});
-
-describe('is main version ahead', () => {
-    it('should be true with major version', function () {
-        expect(util.isMainVersionAhead('2.0.0', '1.0.0')).toBe(true);
+    it('should throw error when main version is not in the semantic format', () => {
+        expect(() => util.getNextVersion('0.0', '0.0.0', 'patch'))
+            .toThrowError('Main version does not follow semantic versioning of major.minor.patch');
     });
 
-    it('should be true with minor version', function () {
-        expect(util.isMainVersionAhead('1.2.0', '1.1.0')).toBe(true);
+    it('should throw error when current version is not in the semantic format', () => {
+        expect(() => util.getNextVersion('0.0.0', '0.0', 'patch'))
+            .toThrowError('Version does not follow semantic versioning of major.minor.patch');
     });
 
-    it('should be true with path version', function () {
-        expect(util.isMainVersionAhead('1.1.1', '1.1.0')).toBe(true);
+    it('should increment main version when main is ahead as major', () => {
+        expect(util.getNextVersion('1.0.0', '0.0.0', 'major')).toBe('2.0.0');
     });
 
-    it('should be true', function () {
-        expect(util.isMainVersionAhead('1.0.1', '1.1.0')).toBe(false);
+    it('should increment main version when main is ahead as minor', () => {
+        expect(util.getNextVersion('0.1.0', '0.0.0', 'minor')).toBe('0.2.0');
+    });
+
+    it('should increment main version when main is ahead as patch', () => {
+        expect(util.getNextVersion('0.0.1', '0.0.0', 'patch')).toBe('0.0.2');
+    });
+
+    it('should throw error when version is already incremented', () => {
+        expect(() => util.getNextVersion('0.0.0', '1.0.0', 'major'))
+            .toThrowError('Version has already been incremented.')
+    });
+
+    it('should increment major after minor or patch have been incremented', () => {
+        expect(util.getNextVersion('0.0.0', '0.1.0', 'major')).toBe('1.0.0');
+    });
+
+    it('should increment minor after patch has been incremented', () => {
+        expect(util.getNextVersion('0.0.0', '0.0.1', 'minor')).toBe('0.1.0');
     });
 });
 
