@@ -7,7 +7,7 @@ time.
 
 ## Supported Files
 
-Current support the following files,
+Currently supports the following files,
 
 * `package.json`
 * `pom.xml`
@@ -23,8 +23,6 @@ The Action is driven based on the labels on the Pull Request. The following labe
 | Minor Increment | `version:minor`             |
 | Patch Increment | `version:patch` or No label |
 
-See [Example Pull Request](https://github.com/Piszmog/next-version/pull/6) to see the action in action.
-
 ### Example
 
 | Label           | Current Version | New Version |
@@ -34,6 +32,8 @@ See [Example Pull Request](https://github.com/Piszmog/next-version/pull/6) to se
 | `version:patch` | `1.2.3`         | `1.2.4`     |
 | No Label        | `1.2.3`         | `1.2.4`     |
 
+* See the [Example Pull Request](https://github.com/Piszmog/next-version/pull/6) to see the action in action.
+
 ## Inputs
 
 | Name           | Required | Description                                                                         |
@@ -42,6 +42,8 @@ See [Example Pull Request](https://github.com/Piszmog/next-version/pull/6) to se
 | `files`        | True     | Comma separated list of files containing the version to increment                   |
 
 ## Example Usage
+
+It is recommended to have the action in its own workflow file in order to trigger correctly.
 
 ```yaml
 name: Versioning
