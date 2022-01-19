@@ -40,3 +40,25 @@ The Action is driven based on the labels on the Pull Request. The following labe
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     files: package.json,ui/package.json,backend/pom.xml
 ```
+
+## Limitations
+
+### New Workflow Runs are not triggered
+
+Incrementing the version does not trigger a new workflow run. This is due
+to [limitations set by GitHub](https://help.github.com/en/actions/reference/events-that-trigger-workflows#triggering-new-workflows-using-a-personal-access-token)
+.
+
+> When you use the repository's GITHUB_TOKEN to perform tasks on behalf of the GitHub Actions app, events triggered by the GITHUB_TOKEN will not create a new workflow run. This prevents you from accidentally creating recursive workflow runs.
+
+You can change this by creating a new [Personal Access Token (PAT)](https://github.com/settings/tokens/new) with the , storing the
+token as a secret in your repository and then passing the new token to the action.
+
+```yaml
+- uses: Piszmog/next-version@v1
+  with:
+    GITHUB_TOKEN: ${{ secrets.YOUR_PAT }}
+```
+
+If you work in an organization and don't want to create a PAT from your personal account, we recommend using
+a [robot account](https://docs.github.com/en/github/getting-started-with-github/types-of-github-accounts) for the token.
