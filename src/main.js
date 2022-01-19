@@ -18,7 +18,7 @@ const run = async () => {
     const client = new Client(octokit, context);
 
     // determine what version we are going to increment based on the label on the PR
-    const pullRequest = await client.getPullRequest(83);
+    const pullRequest = await client.getPullRequest(context.payload.pull_request.number);
     const versionToIncrement = util.getVersionToIncrement(pullRequest.labels);
 
     const handler = new Handler(client, mainBranch, versionToIncrement);
