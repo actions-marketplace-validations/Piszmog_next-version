@@ -66,7 +66,7 @@ class Handler {
         }
         if (content) {
             fs.writeFileSync(path, content, 'utf8');
-            await this.client.commitFile(path, content, `Bump version to ${this.versionToIncrement}`, branch);
+            await this.client.commitFile(path, content, `Bump ${this.versionToIncrement} version`, branch);
         }
     }
 
