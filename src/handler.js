@@ -125,7 +125,7 @@ class Handler {
         const currentVersion = matches[1];
         // determine if the version has already been incremented
         const mainContent = await this.getMainContent(path);
-        const mainMatches = mainContent.match(pomRegex);
+        const mainMatches = mainContent.match(gradleRegex);
         if (mainMatches.length !== 2) {
             throw new VersionNotFoundError(`Unable to find version in Gradle on main branch for file ${path}`);
         }
