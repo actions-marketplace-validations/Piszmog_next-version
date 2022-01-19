@@ -69,8 +69,8 @@ to [limitations set by GitHub](https://help.github.com/en/actions/reference/even
 
 > When you use the repository's GITHUB_TOKEN to perform tasks on behalf of the GitHub Actions app, events triggered by the GITHUB_TOKEN will not create a new workflow run. This prevents you from accidentally creating recursive workflow runs.
 
-You can change this by creating a new [Personal Access Token (PAT)](https://github.com/settings/tokens/new) with the ,
-storing the token as a secret in your repository and then passing the new token to the action.
+You can change this by creating a new [Personal Access Token (PAT)](https://github.com/settings/tokens/new), with the
+scope `public_repo`, storing the token as a secret in your repository and then passing the new token to the action.
 
 ```yaml
 - uses: Piszmog/next-version@v1
