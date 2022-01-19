@@ -38,6 +38,24 @@ describe('get next version', () => {
     });
 });
 
+describe('is main version ahead', () => {
+    it('should be true with major version', function () {
+        expect(util.isMainVersionAhead('2.0.0', '1.0.0')).toBe(true);
+    });
+
+    it('should be true with minor version', function () {
+        expect(util.isMainVersionAhead('1.2.0', '1.1.0')).toBe(true);
+    });
+
+    it('should be true with path version', function () {
+        expect(util.isMainVersionAhead('1.1.1', '1.1.0')).toBe(true);
+    });
+
+    it('should be true', function () {
+        expect(util.isMainVersionAhead('1.0.1', '1.1.0')).toBe(false);
+    });
+});
+
 describe('get file extension', () => {
     it('should be json', () => {
         expect(util.getFileExtension('package.json')).toBe('json');
