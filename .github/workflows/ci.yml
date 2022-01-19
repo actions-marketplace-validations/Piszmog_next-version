@@ -24,3 +24,13 @@ jobs:
         run: npm run lint
       - name: Run Tests
         run: npm test
+  version:
+    name: Version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Next Version
+        uses: Piszmog/next-version@v1.0.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          files: package.json
