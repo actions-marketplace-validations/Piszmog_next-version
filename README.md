@@ -15,6 +15,8 @@ The Action is driven based on the labels on the Pull Request. The following labe
 | Minor Increment | `version:minor`             |
 | Patch Increment | `version:patch` or No label |
 
+See [Example Pull Request](https://github.com/Piszmog/next-version/pull/6) to see the action in action.
+
 ### Example
 
 | Label           | Current Version | New Version |
@@ -34,11 +36,27 @@ The Action is driven based on the labels on the Pull Request. The following labe
 ## Example Usage
 
 ```yaml
-- name: Increment Version
-  uses: Piszmog/next-version@v1
-  with:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    files: package.json,ui/package.json,backend/pom.xml
+name: Versioning
+on:
+  pull_request:
+    types:
+      - opened
+      - labeled
+      - synchronize
+    branches:
+      - main
+jobs:
+  version:
+    name: Version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Next Version
+        uses: Piszmog/next-version@v1.0.3
+        with:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          files: package.json
+
 ```
 
 ## Limitations
@@ -51,8 +69,8 @@ to [limitations set by GitHub](https://help.github.com/en/actions/reference/even
 
 > When you use the repository's GITHUB_TOKEN to perform tasks on behalf of the GitHub Actions app, events triggered by the GITHUB_TOKEN will not create a new workflow run. This prevents you from accidentally creating recursive workflow runs.
 
-You can change this by creating a new [Personal Access Token (PAT)](https://github.com/settings/tokens/new) with the , storing the
-token as a secret in your repository and then passing the new token to the action.
+You can change this by creating a new [Personal Access Token (PAT)](https://github.com/settings/tokens/new) with the ,
+storing the token as a secret in your repository and then passing the new token to the action.
 
 ```yaml
 - uses: Piszmog/next-version@v1
