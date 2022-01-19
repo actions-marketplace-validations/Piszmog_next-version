@@ -62,7 +62,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Next Version
-        uses: Piszmog/next-version@v1.0.3
+        uses: Piszmog/next-version@v1
         with:
           GITHUB_TOKEN: ${{ secrets.PAT }}
           files: package.json
