@@ -11,6 +11,9 @@ const util = require('./util');
 const run = async () => {
     const context = github.context;
     const token = core.getInput('token');
+    if (!token) {
+        throw new Error('No token provided');
+    }
     const octokit = github.getOctokit(token);
     const branch = context.payload.pull_request.head.ref;
     const mainBranch = context.payload.pull_request.base.ref;
