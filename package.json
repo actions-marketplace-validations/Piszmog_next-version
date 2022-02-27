@@ -6,8 +6,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest",
-    "build": "ncc build",
-    "buildv17": "node --openssl-legacy-provider ./node_modules/@vercel/ncc/dist/ncc/cli.js build"
+    "build": "ncc build"
   },
   "repository": {
     "type": "git",
@@ -31,8 +30,8 @@
     "fs": "^0.0.1-security"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.33.1",
+    "@vercel/ncc": "^0.33.3",
     "eslint": "^8.9.0",
-    "jest": "^27.4.7"
+    "jest": "^27.5.1"
   }
 }
