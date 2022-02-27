@@ -1,6 +1,6 @@
 {
   "name": "next-version",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Increments a project to the next version.",
   "main": "src/main.js",
   "scripts": {
