@@ -10,7 +10,7 @@ const util = require('./util');
  */
 const run = async () => {
     const context = github.context;
-    const token = core.getInput('GITHUB_TOKEN');
+    const token = core.getInput('token');
     const octokit = github.getOctokit(token);
     const branch = context.payload.pull_request.head.ref;
     const mainBranch = context.payload.pull_request.base.ref;

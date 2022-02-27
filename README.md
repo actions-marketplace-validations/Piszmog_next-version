@@ -7,7 +7,7 @@ time.
 
 ## Supported Files
 
-Currently supports the following files,
+Currently, supports the following files,
 
 * `package.json`
 * `pom.xml`
@@ -36,10 +36,10 @@ The Action is driven based on the labels on the Pull Request. The following labe
 
 ## Inputs
 
-| Name           | Required | Description                                                                         |
-|----------------|----------|-------------------------------------------------------------------------------------|
-| `GITHUB_TOKEN` | True     | GitHub Token used to query files in the repository and commit changes to the branch |
-| `files`        | True     | Comma separated list of files containing the version to increment                   |
+| Name    | Required | Description                                                                         |
+|---------|----------|-------------------------------------------------------------------------------------|
+| `token` | True     | GitHub Token used to query files in the repository and commit changes to the branch |
+| `files` | True     | Comma separated list of files containing the version to increment                   |
 
 ## Example Usage
 
@@ -64,7 +64,7 @@ jobs:
       - name: Next Version
         uses: Piszmog/next-version@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          token: ${{ secrets.PAT }}
           files: package.json
 
 ```
@@ -85,7 +85,7 @@ scope `public_repo`, storing the token as a secret in your repository and then p
 ```yaml
 - uses: Piszmog/next-version@v1
   with:
-    GITHUB_TOKEN: ${{ secrets.YOUR_PAT }}
+    token: ${{ secrets.YOUR_PAT }}
 ```
 
 If you work in an organization and don't want to create a PAT from your personal account, we recommend using

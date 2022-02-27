@@ -4,7 +4,7 @@ branding:
   icon: chevrons-up
   color: blue
 inputs:
-  GITHUB_TOKEN:
+  token:
     description: Personal access token for the GitHub account that will be used to make the API calls.
     required: true
   files:
