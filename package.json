@@ -1,6 +1,6 @@
 {
   "name": "next-version",
-  "version": "1.1.17",
+  "version": "1.1.18",
   "description": "Increments a project to the next version.",
   "main": "src/main.js",
   "scripts": {
@@ -26,7 +26,7 @@
   "homepage": "https://github.com/Piszmog/next-version#readme",
   "dependencies": {
     "@actions/core": "^1.8.0",
-    "@actions/github": "^5.0.1",
+    "@actions/github": "^5.0.2",
     "fs": "^0.0.1-security"
   },
   "devDependencies": {
