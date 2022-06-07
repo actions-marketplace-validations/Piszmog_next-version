@@ -1,6 +1,6 @@
 {
   "name": "next-version",
-  "version": "1.1.23",
+  "version": "1.1.24",
   "description": "Increments a project to the next version.",
   "main": "src/main.js",
   "scripts": {
@@ -32,6 +32,6 @@
   "devDependencies": {
     "@vercel/ncc": "^0.34.0",
     "eslint": "^8.17.0",
-    "jest": "^28.1.0"
+    "jest": "^28.1.1"
   }
 }
